@@ -8,16 +8,30 @@ Reusable [GitHub Actions](https://docs.github.com/en/actions/sharing-automations
 
 ## Usage
 
-
-```
+```yaml
 steps:
   - uses: cilium/actions/<action-name>@<ref>
     with:
       param: value
 ```
 
-
 Each action directory contains an `action.yaml` (or `action.yml`) describing its inputs, outputs, and steps.
+
+### Set commit status
+
+The `set-commit-status` action sets the workflow's commit status on a given SHA.
+The calling workflow must grant `statuses: write` permission.
+
+```yaml
+permissions:
+  statuses: write
+
+steps:
+  - uses: cilium/actions/set-commit-status@<commit-sha> # main
+    with:
+      sha: ${{ github.sha }}
+      status: pending
+```
 
 ## Contributing
 
