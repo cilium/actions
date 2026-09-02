@@ -33,6 +33,17 @@ steps:
       status: pending
 ```
 
+### Remove slow Azure apt mirrors
+
+The `remove-azure-apt-mirrors` action drops the `azure.archive.ubuntu.com` entries
+from `/etc/apt/apt-mirrors.txt` on GitHub-hosted Ubuntu runners, so `apt` falls back
+to the official Ubuntu mirrors. It is a no-op on runners without that file.
+
+```yaml
+steps:
+  - uses: cilium/actions/remove-azure-apt-mirrors@<commit-sha> # main
+```
+
 ## Contributing
 
 When adding or modifying an action:
